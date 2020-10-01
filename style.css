@@ -1,0 +1,16 @@
+.img-header {
+    width : auto;
+    height : 100px;
+    padding : 15px;
+}
+.img-product-list {
+    width : auto;
+    height : 200px;
+    padding : 15px;
+}
+
+.img-product {
+    width : auto;
+    height : 400px;
+    padding : 15px;
+}
