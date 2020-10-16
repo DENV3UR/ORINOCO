@@ -4,6 +4,10 @@ var totalPrice = 0
 
 document.querySelector("form").addEventListener("submit", function(e){
     e.preventDefault();
+
+    if (!checkMail(document.getElementById('email').value)) return false
+    if (!checkEmptyFields()) return false
+
     var id = []
     for(let i=0; i<cartItems.length; i++){
         id.push(cartItems[i]['id'])
@@ -33,6 +37,7 @@ document.querySelector("form").addEventListener("submit", function(e){
                 document.querySelector("h5").innerHTML = ''
                 alert(idConfirmation);
                 localStorage.clear()
+                document.querySelector("form").reset()
                 let PrixConfirmation = (totalPrice)
                 console.log(PrixConfirmation);
               } else {
@@ -85,3 +90,22 @@ function getForm() {
     return JSON.stringify(obj);
 }
 
+function checkMail(mail) 
+{
+ if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
+
+function checkEmptyFields() {
+  if(document.getElementById('prenom').value.length == 0 || document.getElementById('nom').value.length == 0 || document.getElementById('adresse').value.length == 0 || document.getElementById('ville').value.length == 0){
+    alert("All fields need to be completed!")
+    return (false)
+  }
+  else {
+    return true
+  }
+}
