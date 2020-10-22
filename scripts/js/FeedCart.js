@@ -35,11 +35,11 @@ document.querySelector("form").addEventListener("submit", function(e){
                 let idConfirmation = (data["orderId"])
                 document.querySelector("tbody").innerHTML = ''
                 document.querySelector("h5").innerHTML = ''
-                alert(idConfirmation);
+                //alert("Votre commande a bien été enregistrée sous le numéro : " + idConfirmation);
                 localStorage.clear()
                 document.querySelector("form").reset()
                 let PrixConfirmation = (totalPrice)
-                console.log(PrixConfirmation);
+                window.location.href = 'done.html?conf=' + idConfirmation
               } else {
                 console.error('reponse serveur : ', response.status);
               }
