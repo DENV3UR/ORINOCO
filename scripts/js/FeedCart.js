@@ -20,34 +20,7 @@ document.querySelector("form").addEventListener("submit", function(e){
         email : document.getElementById('email').value,
       }};
 
-        const postdataCart = async function () {
-            try {
-              let response = await fetch("http://localhost:3000/api/cameras/order", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(infosServeur)
-              });
-              if (response.ok) {
-                let data = await response.json()
-                console.log(data);
-                let idConfirmation = (data["orderId"])
-                document.querySelector("tbody").innerHTML = ''
-                document.querySelector("h5").innerHTML = ''
-                //alert("Votre commande a bien été enregistrée sous le numéro : " + idConfirmation);
-                localStorage.clear()
-                document.querySelector("form").reset()
-                let PrixConfirmation = (totalPrice)
-                window.location.href = 'done.html?conf=' + idConfirmation
-              } else {
-                console.error('reponse serveur : ', response.status);
-              }
-            } catch (e) { 
-              console.log(e) 
-            }
-          }
-          postdataCart()
+      postdataCart(infosServeur)
 })
 
 if(cartItems){
@@ -108,4 +81,36 @@ function checkEmptyFields() {
   else {
     return true
   }
+}
+
+async function postdataCart (data) {
+  try {
+    let response = await fetch("http://localhost:3000/api/cameras/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    if (response.ok) {
+      handleConfirmation(response)
+    } else {
+      console.error('reponse serveur : ', response.status);
+    }
+  } catch (e) { 
+    console.log(e) 
+  }
+}
+
+function handleConfirmation(response){
+  let data = await response.json()
+      console.log(data);
+      let idConfirmation = (data["orderId"])
+      document.querySelector("tbody").innerHTML = ''
+      document.querySelector("h5").innerHTML = ''
+      //alert("Votre commande a bien été enregistrée sous le numéro : " + idConfirmation);
+      localStorage.clear()
+      document.querySelector("form").reset()
+      let PrixConfirmation = (totalPrice)
+      window.location.href = 'done.html?conf=' + idConfirmation + '&price=' + totalPrice
 }
