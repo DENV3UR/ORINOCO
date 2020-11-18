@@ -102,7 +102,7 @@ async function postdataCart (data) {
   }
 }
 
-function handleConfirmation(response){
+async function handleConfirmation(response){
   let data = await response.json()
       console.log(data);
       let idConfirmation = (data["orderId"])
