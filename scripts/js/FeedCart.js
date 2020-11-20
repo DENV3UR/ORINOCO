@@ -111,6 +111,6 @@ async function handleConfirmation(response){
       //alert("Votre commande a bien été enregistrée sous le numéro : " + idConfirmation);
       localStorage.clear()
       document.querySelector("form").reset()
-      let PrixConfirmation = (totalPrice)
-      window.location.href = 'done.html?conf=' + idConfirmation + '&price=' + totalPrice
+      //let PrixConfirmation = (totalPrice)
+      window.location.assign = 'done.html?conf=' + idConfirmation + '&price=' + totalPrice
 }

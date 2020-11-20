@@ -1,7 +1,7 @@
 function fetchData() {
     fetch('http://localhost:3000/api/cameras/')
     .then( response => response.json() )
-    .then( data => renderAllCameras(data) )
+    .then( data => renderAllCameras(data))
   }
 
 function renderAllCameras(data) {
