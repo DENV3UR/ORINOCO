@@ -112,5 +112,5 @@ async function handleConfirmation(response){
       localStorage.clear()
       document.querySelector("form").reset()
       //let PrixConfirmation = (totalPrice)
-      window.location.assign = 'done.html?conf=' + idConfirmation + '&price=' + totalPrice
+      window.location = 'done.html?conf=' + idConfirmation + '&price=' + totalPrice
 }
